@@ -1,0 +1,12 @@
+---
+import { Image } from "astro:assets";
+import holeImage from "../assets/misc/hole.png";
+---
+
+<div class="h-3 bg-white"></div>
+<div class="flex w-full items-center justify-center">
+    <div class="flex-grow bg-white h-2"></div>
+    <Image src={holeImage} alt="hole" class="h-2 w-auto" />
+    <div class="flex-grow bg-white h-2"></div>
+</div>
+<div class="h-3 bg-white"></div>

@@ -1,0 +1,34 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import type { CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+
+    return projects.map((project) => ({
+        params: {
+            slug: project.slug,
+        },
+        props: {
+            project,
+        },
+    }));
+}
+
+interface Props {
+    project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<Layout title="lumen">
+    <main>
+        <div class="max-w-7xl mx-auto mt-10 gap-4">
+            {project.data.title}
+            <Content />
+        </div>
+    </main>
+</Layout>
